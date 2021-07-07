@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "grpc-test/proto";
+
+service Greet {
+    rpc GreetMe (GreetRequest) returns (GreetResponse) {}
+    rpc GreetTimer (GreetRequest) returns (stream GreetResponse) {}
+    rpc GreetUltra (stream GreetRequest) returns (stream GreetResponse) {}
+}
+
+message GreetRequest {
+    string name = 1;
+}
+
+message GreetResponse {
+    string message = 1;
+}
