@@ -44,6 +44,12 @@ func (s *server) GreetTimer(req *pb.GreetRequest, server pb.Greet_GreetTimerServ
 }
 
 func (s *server) GreetUltra(server pb.Greet_GreetUltraServer) error {
+	err := server.Send(&pb.GreetResponse{
+		Message: "Initial server message you didn't get before",
+	})
+	if err != nil {
+		return err
+	}
 	for {
 		in, err := server.Recv()
 		if err == io.EOF {
